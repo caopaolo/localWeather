@@ -1,0 +1,45 @@
+.btn {
+    width: 130px;
+    height: 70px;
+    border-radius: 10px;
+    padding: 15px;
+    display: inline-block;
+    background-color: grey;
+    color: black;
+    font-size: 20px;
+    font-family:Verdana;
+}
+h1{
+    color: black;
+    padding: 70px;
+    font-family: Apple Chancery;
+    font-size: 60px;
+}
+.wi {
+    font-size: 40px;
+    display: inline-block;
+    font-family: 'weathericons';
+    font-style: normal;
+    font-weight: normal;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+
+    margin-right: 15px;
+    margin-bottom: 15px;
+    min-width: 54px;
+    text-align: center;
+    color: #924da3;
+}
+.weather-des {
+    text-align: center;
+    font-size: 25px;
+    font-weight: bold;
+    color: red;
+}
+.weather-temp{
+    text-align: center;
+    font-size: 25px;
+    font-weight: bold;
+    color: red;
+}

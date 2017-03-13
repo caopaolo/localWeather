@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="weather-icons/css/weather-icons.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+    <div class="text-center">
+        <h1><b>Show the Local Weather</b></h1>
+        <div class="result">
+
+
+        </div>
+
+
+
+        <!--<i class="wi wi-day-cloudy-gusts"></i>-->
+        <!--<i class="wi wi-day-cloudy-gusts"></i>-->
+        <!--<i class="wi wi-day-cloudy-gusts"></i>-->
+        <!--<i class="wi wi-day-cloudy-gusts"></i>-->
+
+        <ul class="list-unstyled">
+            <!--<li class="btn btn-default" id="city"></li>-->
+            <!--<li class="btn btn-default" id ="weatherType"></li>-->
+            <!--<li class="btn btn-default" id="fTemp"></li>-->
+            <!--<li class="btn btn-default" id="windSpeed"></li>-->
+        </ul>
+    </div>
+    <script>
+        $(document).ready(function(){
+            var lat;
+            var lon;
+            var api;
+            $.getJSON("http://ip-api.com/json",function(data){
+                lat = data.lat;
+                lon = data.lon;
+                api = 'http://api.openweathermap.org/data/2.5/weather?lat='+ lat +'&lon='+ lon+'&appid=7c277fcc664e3e7978897fdbe3830700';
+                $.getJSON(api, function(response){
+                    console.log(response.weather[0].main);
+                    var mainWeather =  response.weather[0].main;
+                    mainWeather = mainWeather.toLowerCase()
+                    var weatherDes = response.weather[0].description;
+                    var kTemp = response.main.temp;
+                    var cTemp = (kTemp - 273).toFixed(0);
+                    console.log(kTemp);
+                    console.log(cTemp);
+                    switch(mainWeather){
+                        case 'drizzle':
+                            var html  =  '<i class="wi wi-day-cloudy-gusts"></i>' ;
+                            $('.result').css("background-image", "url(https://i.ytimg.com/vi/LbAigABOm_E/maxresdefault.jpg)");
+                            break;
+                        case 'clouds':
+                            $('body').css("background-image", "url(https://tctechcrunch2011.files.wordpress.com/2015/08/clouds.jpg)");
+                            break;
+                        case 'rain':
+                            $('body').css("background-image", "url(https://www.ibiza2day.com/wp-content/uploads/2015/03/rain.jpg)");
+                            break;
+                        case 'snow':
+                            $('body').css("background-image", "url(http://vignette4.wikia.nocookie.net/phobia/images/a/aa/Snow.jpg/revision/latest?cb=20161109045734)");
+                            break;
+                        case 'clear':
+                            var html = ' <p class="weather-des">' + weatherDes + '</p>';
+                                html  +=  '<i class="wi wi-night-clear"></i>' ;
+                                html  += '<p class="weather-temp"> '+ cTemp + " &#8451;"+'</p>';
+
+                            $('.result').html(html);
+                            break;
+                        case 'thunderstom':
+                            $('body').css("background-image", "url(https://s-media-cache-ak0.pinimg.com/564x/7e/fb/1e/7efb1e6d25184aac0998fb966732325d.jpg)");
+                            break;
+                        default:
+                            $('body').css("background-image", "url(http://exchangedownloads.smarttech.com/public/content/c7/c7b7d2f6-0e68-41bc-b320-063ae2783f69/previews/medium/0001.png)");
+                            break;
+                    }
+                })
+                console.log(api);
+
+            })
+
+
+//            $.getJSON("http://ip-api.com/json",function(data){
+//
+//            })
+
+        });
+    </script>
+</body>
+</html>

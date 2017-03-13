@@ -1,0 +1,2 @@
+link api: https://openweathermap.org/current
+link icon: https://erikflowers.github.io/weather-icons/
